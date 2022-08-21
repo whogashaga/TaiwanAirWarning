@@ -33,4 +33,15 @@ data class Record(
     val status: String? = "",
     val wind_direc: String? = "",
     val wind_speed: String? = ""
-)
+) {
+
+    val isStatusGood: Boolean get() = (status == "良好")
+
+    val customStatus: String
+        get() = if (status == "良好") {
+            "The status is good, we want to go out to have fun"
+        } else {
+            status.orEmpty()
+        }
+
+}
