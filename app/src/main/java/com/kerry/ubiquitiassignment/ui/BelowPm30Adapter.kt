@@ -39,7 +39,11 @@ class BelowPm30ViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bindView(position: Int, record: Record?) {
-
+        binding.tvSiteId.text = record?.siteId.orEmpty()
+        binding.tvSiteName.text = record?.siteName.orEmpty()
+        binding.tvPmValue.text = record?.pmTwoPointFive.orEmpty()
+        binding.tvCounty.text = record?.county.orEmpty()
+        binding.tvStatus.text = record?.status.orEmpty()
     }
 
 }
