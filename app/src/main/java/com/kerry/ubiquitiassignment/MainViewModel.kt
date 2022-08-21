@@ -33,12 +33,8 @@ class MainViewModel @Inject constructor(
     val searchedRecords = _keyword
         .debounce(500)
         .map { keyword ->
-            if (keyword.isEmpty()) {
-                _allRecords
-            } else {
-                _allRecords.filter { record ->
-                    record?.siteName?.contains(keyword) == true || record?.county?.contains(keyword) == true
-                }
+            _allRecords.filter { record ->
+                record?.siteName?.contains(keyword) == true || record?.county?.contains(keyword) == true
             }
         }
         .asLiveData()

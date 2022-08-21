@@ -39,44 +39,44 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="114dp"
+        android:layout_marginTop="116dp"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:orientation="vertical">
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="82dp"
+            android:layout_height="84dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/bg_card_place_holder" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="82dp"
+            android:layout_height="84dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/bg_card_place_holder" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="82dp"
+            android:layout_height="84dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/bg_card_place_holder" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="82dp"
+            android:layout_height="84dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/bg_card_place_holder" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="82dp"
+            android:layout_height="84dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/bg_card_place_holder" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="82dp"
+            android:layout_height="84dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/bg_card_place_holder" />
 

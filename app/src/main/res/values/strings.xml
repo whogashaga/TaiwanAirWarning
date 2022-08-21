@@ -5,4 +5,5 @@
     <string name="air_alert_title">注意空汙</string>
     <string name="air_alert_content">%1$s目前 PM2.5 為 %2$s，\n出門前請三思或戴好口罩。</string>
     <string name="search_hint">請輸入「站名」</string>
+    <string name="key_in_keyword_plz">請輸入「站名」\n查詢該地區空汙資訊</string>
 </resources>

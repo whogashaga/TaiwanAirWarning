@@ -61,6 +61,8 @@ class MainActivity : AppCompatActivity() {
             binding.editKeyword.visible()
             binding.editKeyword.isEnabled = true
             binding.editKeyword.showKeyboard()
+            viewModel.onTextChanged("")
+            binding.root.transitionToEnd()
         }
 
         binding.ivBack.setOnClickListener {
@@ -70,6 +72,7 @@ class MainActivity : AppCompatActivity() {
             binding.ivBack.gone()
             binding.tvTitle.visible()
             binding.ivSearch.visible()
+            binding.root.transitionToStart()
         }
 
         binding.editKeyword.doAfterTextChanged {
@@ -136,7 +139,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewModel.searchedRecords.observe(this) {
-            searchRecordsAdapter.submitList(it)
+            searchRecordsAdapter.submitList(it) {
+                binding.tvMessage.run { if (it.isEmpty()) visible() else gone() }
+            }
         }
     }
 
