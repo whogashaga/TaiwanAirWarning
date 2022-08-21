@@ -4,4 +4,5 @@
     <string name="alert_api_speed_slow">政府 API 速度緩慢，請耐心等候。</string>
     <string name="air_alert_title">注意空汙</string>
     <string name="air_alert_content">%1$s目前 PM2.5 為 %2$s，\n出門前請三思或戴好口罩。</string>
+    <string name="search_hint">請輸入「站名」</string>
 </resources>

@@ -27,22 +27,33 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.toolbar)
-
         Toast.makeText(this, getString(R.string.alert_api_speed_slow), Toast.LENGTH_LONG).show()
 
         viewModel.fetchRecordList()
 
+        setupToolbar()
         setupRecyclerView()
+        observeLiveData()
 
-        viewModel.recordsBelowAvg.observe(this) {
-            belowAvgPmAdapter.submitList(it) {
-                binding.shimmerLoading.root.gone()
-            }
+    }
+
+    private fun setupToolbar() {
+        binding.ivSearch.setOnClickListener {
+            binding.tvTitle.gone()
+            binding.ivSearch.gone()
+            binding.ivBack.visible()
+            binding.editKeyword.visible()
+            binding.editKeyword.isEnabled = true
+            binding.editKeyword.showKeyboard()
         }
 
-        viewModel.recordsAboveAvg.observe(this) {
-            aboveAvgPmAdapter.submitList(it)
+        binding.ivBack.setOnClickListener {
+            binding.editKeyword.setText("")
+            binding.editKeyword.isEnabled = false
+            binding.editKeyword.gone()
+            binding.ivBack.gone()
+            binding.tvTitle.visible()
+            binding.ivSearch.visible()
         }
 
     }
