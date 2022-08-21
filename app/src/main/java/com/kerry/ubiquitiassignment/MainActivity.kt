@@ -7,12 +7,13 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.RecyclerView
 import com.kerry.ubiquitiassignment.databinding.ActivityMainBinding
+import com.kerry.ubiquitiassignment.model.Record
 import com.kerry.ubiquitiassignment.ui.AboveAvgPmAdapter
 import com.kerry.ubiquitiassignment.ui.BelowAvgPmAdapter
-import com.kerry.ubiquitiassignment.utils.dp
-import com.kerry.ubiquitiassignment.utils.gone
+import com.kerry.ubiquitiassignment.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,6 +23,21 @@ class MainActivity : AppCompatActivity() {
     private val viewModel by viewModels<MainViewModel>()
     private val belowAvgPmAdapter = BelowAvgPmAdapter()
     private val aboveAvgPmAdapter = AboveAvgPmAdapter()
+    private val searchRecordsAdapter = AboveAvgPmAdapter()
+    private val verticalDecoration = object : RecyclerView.ItemDecoration() {
+        override fun getItemOffsets(
+            rect: Rect,
+            view: View,
+            parent: RecyclerView,
+            state: RecyclerView.State
+        ) {
+            when (parent.getChildAdapterPosition(view)) {
+                RecyclerView.NO_POSITION -> super.getItemOffsets(rect, view, parent, state)
+                0 -> rect.set(16.dp, 16.dp, 16.dp, 16.dp)
+                else -> rect.set(16.dp, 0, 16.dp, 16.dp)
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +72,9 @@ class MainActivity : AppCompatActivity() {
             binding.ivSearch.visible()
         }
 
+        binding.editKeyword.doAfterTextChanged {
+            viewModel.onTextChanged(it.toString())
+        }
     }
 
     private fun setupRecyclerView() {
@@ -92,20 +111,46 @@ class MainActivity : AppCompatActivity() {
                         .show()
                 }
             }
-            addItemDecoration(object : RecyclerView.ItemDecoration() {
-                override fun getItemOffsets(
-                    rect: Rect,
-                    view: View,
-                    parent: RecyclerView,
-                    state: RecyclerView.State
-                ) {
-                    when (parent.getChildAdapterPosition(view)) {
-                        RecyclerView.NO_POSITION -> super.getItemOffsets(rect, view, parent, state)
-                        0 -> rect.set(16.dp, 16.dp, 16.dp, 16.dp)
-                        else -> rect.set(16.dp, 0, 16.dp, 16.dp)
-                    }
+            addItemDecoration(verticalDecoration)
+        }
+
+        with(binding.rvSearchRecords) {
+            adapter = searchRecordsAdapter.apply {
+                onArrowClick = {
+                    showPm25AlertDialog(it)
                 }
-            })
+            }
+            addItemDecoration(verticalDecoration)
         }
     }
+
+    private fun observeLiveData() {
+        viewModel.recordsBelowAvg.observe(this) {
+            belowAvgPmAdapter.submitList(it) {
+                binding.shimmerLoading.root.gone()
+            }
+        }
+
+        viewModel.recordsAboveAvg.observe(this) {
+            aboveAvgPmAdapter.submitList(it)
+        }
+
+        viewModel.searchedRecords.observe(this) {
+            searchRecordsAdapter.submitList(it)
+        }
+    }
+
+    private fun showPm25AlertDialog(it: Record) {
+        AlertDialog.Builder(this@MainActivity)
+            .setTitle(R.string.air_alert_title)
+            .setMessage(
+                getString(
+                    R.string.air_alert_content,
+                    it.county.orEmpty(),
+                    it.pmTwoPointFive.orEmpty()
+                )
+            )
+            .show()
+    }
+
 }
