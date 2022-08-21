@@ -54,30 +54,38 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupToolbar() {
-        binding.ivSearch.setOnClickListener {
-            binding.tvTitle.gone()
-            binding.ivSearch.gone()
-            binding.ivBack.visible()
-            binding.editKeyword.visible()
-            binding.editKeyword.isEnabled = true
-            binding.editKeyword.showKeyboard()
-            viewModel.onTextChanged("")
-            binding.root.transitionToEnd()
+        with(binding.toolbar) {
+            onSearchClick = {
+                binding.root.transitionToEnd()
+            }
+            onBackClick = {
+                binding.root.transitionToStart()
+            }
+            onEditTextChanged = {
+                viewModel.onTextChanged(it)
+            }
         }
-
-        binding.ivBack.setOnClickListener {
-            binding.editKeyword.setText("")
-            binding.editKeyword.isEnabled = false
-            binding.editKeyword.gone()
-            binding.ivBack.gone()
-            binding.tvTitle.visible()
-            binding.ivSearch.visible()
-            binding.root.transitionToStart()
-        }
-
-        binding.editKeyword.doAfterTextChanged {
-            viewModel.onTextChanged(it.toString())
-        }
+//        binding.ivSearch.setOnClickListener {
+//            binding.ivBack.visible()
+//            binding.editKeyword.visible()
+//            binding.editKeyword.isEnabled = true
+//            binding.editKeyword.showKeyboard()
+//            binding.tvTitle.gone()
+//            binding.ivSearch.gone()
+//            binding.root.transitionToEnd()
+//            viewModel.onTextChanged("")
+//        }
+//
+//        binding.ivBack.setOnClickListener {
+//            binding.tvTitle.visible()
+//            binding.ivSearch.visible()
+//            binding.editKeyword.setText("")
+//            binding.editKeyword.isEnabled = false
+//            binding.editKeyword.gone()
+//            binding.ivBack.gone()
+//            binding.root.transitionToStart()
+//        }
+//
     }
 
     private fun setupRecyclerView() {

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/toolbarMotion"
+    android:layout_width="match_parent"
+    android:layout_height="?actionBarSize"
+    app:layoutDescription="@xml/activity_main_xml_toolbar_scene"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:parentTag="androidx.constraintlayout.motion.widget.MotionLayout">
+
+    <ImageView
+        android:id="@+id/ivBack"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:scaleType="center"
+        android:src="@drawable/ic_arrow_back_black"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/editKeyword"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="24dp"
+        android:background="@android:color/transparent"
+        android:hint="@string/search_hint"
+        android:maxLength="15"
+        android:maxLines="1"
+        android:textCursorDrawable="@drawable/bg_edit_cursor"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivBack"
+        tools:text="空氣污染" />
+
+    <ImageView
+        android:id="@+id/ivSearch"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:scaleType="center"
+        android:src="@drawable/ic_search_black"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</merge>
