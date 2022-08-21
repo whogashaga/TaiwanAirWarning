@@ -53,15 +53,6 @@ class AboveAvgPmViewHolder(
 
         if (record?.isStatusGood == true) {
             binding.ivArrow.gone()
-            if (position % 3 == 0) {
-                binding.ivArrow.visible()
-                binding.root.setOnClickListener {
-                    if (record != null) {
-                        onArrowClick.invoke(record)
-                    }
-                }
-                return
-            }
             binding.root.setOnClickListener {  }
         } else {
             binding.ivArrow.visible()

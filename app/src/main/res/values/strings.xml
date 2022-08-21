@@ -3,5 +3,5 @@
     <string name="toolbar_title">空氣污染</string>
     <string name="alert_api_speed_slow">政府 API 速度緩慢，請耐心等候。</string>
     <string name="air_alert_title">注意空汙</string>
-    <string name="air_alert_content">目前%1$s PM2.5 為 %2$s，\n出門前請三思或戴好口罩。</string>
+    <string name="air_alert_content">%1$s目前 PM2.5 為 %2$s，\n出門前請三思或戴好口罩。</string>
 </resources>
