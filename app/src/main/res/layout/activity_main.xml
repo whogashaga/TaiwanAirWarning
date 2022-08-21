@@ -20,22 +20,29 @@
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvBelowPm30"
+        android:id="@+id/rvBelowAvgPm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_toolbar"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
+    <View
+        android:id="@+id/viewDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray_cccccc"
+        app:layout_constraintBottom_toTopOf="@+id/rvAboveAvgPm"
+        app:layout_constraintTop_toBottomOf="@+id/rvBelowAvgPm" />
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvAbovePm30"
+        android:id="@+id/rvAboveAvgPm"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvBelowPm30" />
+        app:layout_constraintTop_toBottomOf="@+id/viewDivider" />
 
     <include
         android:id="@+id/shimmerLoading"

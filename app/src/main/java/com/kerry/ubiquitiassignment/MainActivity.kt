@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView() {
-        with(binding.rvBelowPm30) {
+        with(binding.rvBelowAvgPm) {
             adapter = belowAvgPmAdapter
             addItemDecoration(object : RecyclerView.ItemDecoration() {
                 override fun getItemOffsets(
@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
             })
         }
 
-        with(binding.rvAbovePm30) {
+        with(binding.rvAboveAvgPm) {
             adapter = aboveAvgPmAdapter.apply {
                 onArrowClick = {
                     AlertDialog.Builder(this@MainActivity)
