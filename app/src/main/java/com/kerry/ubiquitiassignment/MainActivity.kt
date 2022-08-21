@@ -21,10 +21,8 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.fetchRecordList()
 
-        viewModel.goodStatusRecords.observe(this) {
-            AlertDialog.Builder(this)
-                .setMessage("size: ${it.size}")
-                .show()
+        viewModel.recordsBelowPm30.observe(this) {
+            
         }
 
     }

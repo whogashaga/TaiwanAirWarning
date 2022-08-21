@@ -1,6 +1,5 @@
 package com.kerry.ubiquitiassignment
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,11 +15,11 @@ class MainViewModel @Inject constructor(
     private val repo: MyRepository
 ) : ViewModel() {
 
-    private val _goodStatusRecords = MutableLiveData<List<Record?>>()
-    val goodStatusRecords: LiveData<List<Record?>> get() = _goodStatusRecords
+    private val _recordsAbovePm30 = MutableLiveData<List<Record?>>()
+    val recordsAbovePm30: LiveData<List<Record?>> get() = _recordsAbovePm30
 
-    private val _badStatusRecords = MutableLiveData<List<Record?>>()
-    val badStatusRecords: LiveData<List<Record?>> get() = _badStatusRecords
+    private val _recordsBelowPm30 = MutableLiveData<List<Record?>>()
+    val recordsBelowPm30: LiveData<List<Record?>> get() = _recordsBelowPm30
 
     private val _enableErrorAlert = MutableLiveData<Boolean>()
     val enableErrorAlert: LiveData<Boolean> get() = _enableErrorAlert
@@ -28,8 +27,13 @@ class MainViewModel @Inject constructor(
     fun fetchRecordList() = viewModelScope.launch {
         when (val result = repo.getAirDataResult(limit = 1000, apiKey = BuildConfig.API_KEY)) {
             is ApiResult.Success -> {
-                val list: List<Record?> = result.data
+                _recordsAbovePm30.value = result.data.filter {
+                    (it?.pmTwoPointFive?.toIntOrNull() ?: 0) > 30
+                }
 
+                _recordsBelowPm30.value = result.data.filter {
+                    (it?.pmTwoPointFive?.toIntOrNull() ?: 0) <= 30
+                }
 
                 _enableErrorAlert.value = false
             }
