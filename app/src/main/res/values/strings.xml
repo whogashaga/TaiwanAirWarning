@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">UbiquitiAssignment</string>
+    <string name="toolbar_title">空氣污染</string>
 </resources>
