@@ -20,16 +20,18 @@
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvGoodStatus"
+        android:id="@+id/rvBelowPm30"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/rvBadStatus"
+        android:id="@+id/rvAbovePm30"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvGoodStatus" />
+        app:layout_constraintTop_toBottomOf="@+id/rvBelowPm30" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
