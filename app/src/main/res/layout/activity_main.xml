@@ -35,4 +35,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rvBelowPm30" />
 
+    <include
+        android:id="@+id/shimmerLoading"
+        layout="@layout/shimmer_main" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
