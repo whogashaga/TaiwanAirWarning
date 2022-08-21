@@ -8,12 +8,10 @@ import retrofit2.http.Query
 
 interface ApiService {
 
-    @GET("aqx_p_432")
+    @GET("aqx_p_432?sort=ImportDate%20desc&format=json")
     fun getAirDataDeferred(
         @Query("limit") limit: String,
         @Query("api_key") apiKey: String,
-        @Query("sort") sort: String,
-        @Query("format") format: String
     ): Deferred<AirDataResult>
 
 }
