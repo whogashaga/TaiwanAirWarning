@@ -8,8 +8,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.kerry.ubiquitiassignment.databinding.ActivityMainBinding
-import com.kerry.ubiquitiassignment.ui.AbovePm30Adapter
-import com.kerry.ubiquitiassignment.ui.BelowPm30Adapter
+import com.kerry.ubiquitiassignment.ui.AboveAvgPmAdapter
+import com.kerry.ubiquitiassignment.ui.BelowAvgPmAdapter
 import com.kerry.ubiquitiassignment.utils.dp
 import com.kerry.ubiquitiassignment.utils.gone
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,8 +19,8 @@ class MainActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private val viewModel by viewModels<MainViewModel>()
-    private val belowPm30Adapter = BelowPm30Adapter()
-    private val abovePm30Adapter = AbovePm30Adapter()
+    private val belowAvgPmAdapter = BelowAvgPmAdapter()
+    private val aboveAvgPmAdapter = AboveAvgPmAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,21 +32,21 @@ class MainActivity : AppCompatActivity() {
 
         setupRecyclerView()
 
-        viewModel.recordsBelowPm30.observe(this) {
-            belowPm30Adapter.submitList(it) {
+        viewModel.recordsBelowAvg.observe(this) {
+            belowAvgPmAdapter.submitList(it) {
                 binding.shimmerLoading.root.gone()
             }
         }
 
-        viewModel.recordsAbovePm30.observe(this) {
-            abovePm30Adapter.submitList(it)
+        viewModel.recordsAboveAvg.observe(this) {
+            aboveAvgPmAdapter.submitList(it)
         }
 
     }
 
     private fun setupRecyclerView() {
         with(binding.rvBelowPm30) {
-            adapter = belowPm30Adapter
+            adapter = belowAvgPmAdapter
             addItemDecoration(object : RecyclerView.ItemDecoration() {
                 override fun getItemOffsets(
                     outRect: Rect,
@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         with(binding.rvAbovePm30) {
-            adapter = abovePm30Adapter.apply {
+            adapter = aboveAvgPmAdapter.apply {
                 onArrowClick = {
                     AlertDialog.Builder(this@MainActivity)
                         .setTitle("注意空汙")

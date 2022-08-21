@@ -35,6 +35,9 @@ data class Record(
     val wind_speed: String? = ""
 ) {
 
+    val pm25: Int? get() = pmTwoPointFive?.toIntOrNull()
+    val pm25Avg: Int? get() = pmTwoPointFiveAvg?.toIntOrNull()
+
     val isStatusGood: Boolean get() = (status == "良好")
 
     val customStatus: String

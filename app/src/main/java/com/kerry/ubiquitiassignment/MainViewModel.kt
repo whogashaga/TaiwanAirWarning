@@ -15,11 +15,11 @@ class MainViewModel @Inject constructor(
     private val repo: MyRepository
 ) : ViewModel() {
 
-    private val _recordsAbovePm30 = MutableLiveData<List<Record?>>()
-    val recordsAbovePm30: LiveData<List<Record?>> get() = _recordsAbovePm30
+    private val _recordsAboveAvg = MutableLiveData<List<Record?>>()
+    val recordsAboveAvg: LiveData<List<Record?>> get() = _recordsAboveAvg
 
-    private val _recordsBelowPm30 = MutableLiveData<List<Record?>>()
-    val recordsBelowPm30: LiveData<List<Record?>> get() = _recordsBelowPm30
+    private val _recordsBelowAvg = MutableLiveData<List<Record?>>()
+    val recordsBelowAvg: LiveData<List<Record?>> get() = _recordsBelowAvg
 
     private val _enableErrorAlert = MutableLiveData<Boolean>()
     val enableErrorAlert: LiveData<Boolean> get() = _enableErrorAlert
@@ -27,12 +27,12 @@ class MainViewModel @Inject constructor(
     fun fetchRecordList() = viewModelScope.launch {
         when (val result = repo.getAirDataResult(limit = 1000, apiKey = BuildConfig.API_KEY)) {
             is ApiResult.Success -> {
-                _recordsAbovePm30.value = result.data.filter {
-                    (it?.pmTwoPointFive?.toIntOrNull() ?: 0) > 30
+                _recordsAboveAvg.value = result.data.filter {
+                    (it?.pm25 ?: 0) > (it?.pm25Avg ?: 0)
                 }
 
-                _recordsBelowPm30.value = result.data.filter {
-                    (it?.pmTwoPointFive?.toIntOrNull() ?: 0) <= 30
+                _recordsBelowAvg.value = result.data.filter {
+                    (it?.pm25 ?: 0) <= (it?.pm25Avg ?: 0)
                 }
 
                 _enableErrorAlert.value = false

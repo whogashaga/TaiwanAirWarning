@@ -5,10 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.kerry.ubiquitiassignment.databinding.ItemBelowPm30Binding
+import com.kerry.ubiquitiassignment.databinding.ItemAbovePm30Binding
 import com.kerry.ubiquitiassignment.model.Record
+import com.kerry.ubiquitiassignment.utils.gone
+import com.kerry.ubiquitiassignment.utils.visible
 
-class BelowPm30Adapter : ListAdapter<Record?, BelowPm30ViewHolder>(
+class AboveAvgPmAdapter : ListAdapter<Record?, AboveAvgPmViewHolder>(
     object : DiffUtil.ItemCallback<Record?>() {
 
         override fun areItemsTheSame(oldItem: Record, newItem: Record): Boolean =
@@ -20,22 +22,26 @@ class BelowPm30Adapter : ListAdapter<Record?, BelowPm30ViewHolder>(
     }
 ) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BelowPm30ViewHolder =
-        BelowPm30ViewHolder(
-            ItemBelowPm30Binding.inflate(
+    var onArrowClick: (Record) -> Unit  = { }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AboveAvgPmViewHolder =
+        AboveAvgPmViewHolder(
+            ItemAbovePm30Binding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            )
+            ),
+            onArrowClick
         )
 
-    override fun onBindViewHolder(holder: BelowPm30ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: AboveAvgPmViewHolder, position: Int) {
         holder.bindView(position, getItem(position))
     }
 }
 
-class BelowPm30ViewHolder(
-    private val binding: ItemBelowPm30Binding
+class AboveAvgPmViewHolder(
+    private val binding: ItemAbovePm30Binding,
+    private val onArrowClick: (Record) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bindView(position: Int, record: Record?) {
@@ -43,7 +49,19 @@ class BelowPm30ViewHolder(
         binding.tvSiteName.text = record?.siteName.orEmpty()
         binding.tvPmValue.text = record?.pmTwoPointFive.orEmpty()
         binding.tvCounty.text = record?.county.orEmpty()
-        binding.tvStatus.text = record?.status.orEmpty()
+        binding.tvStatus.text = record?.customStatus
+
+        if (record?.isStatusGood == true) {
+            binding.ivArrow.gone()
+            binding.root.setOnClickListener {  }
+        } else {
+            binding.ivArrow.visible()
+            binding.root.setOnClickListener {
+                if (record != null) {
+                    onArrowClick.invoke(record)
+                }
+            }
+        }
     }
 
 }
