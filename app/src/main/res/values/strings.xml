@@ -1,12 +1,19 @@
 <resources>
     <string name="app_name">UbiquitiAssignment</string>
+
     <string name="toolbar_title">空氣污染</string>
+
     <string name="alert_api_speed_slow">政府 API 速度緩慢，請耐心等候。</string>
-    <string name="air_alert_title">注意空汙</string>
-    <string name="air_alert_content">%1$s目前 PM2.5 為 %2$s，\n出門前請三思或戴好口罩。</string>
+
     <string name="search_hint">請輸入「站名」</string>
     <string name="key_in_keyword_plz">請輸入「站名」\n查詢該地區空汙資訊</string>
+    <string name="can_not_find_info">"找不到\"%1$s\"\n相關的空汙資訊"</string>
+
+    <string name="air_alert_title">注意空汙</string>
+    <string name="air_alert_content">%1$s目前 PM2.5 為 %2$s，\n出門前請三思或戴好口罩。</string>
     <string name="api_error_alert_title">連線異常</string>
-    <string name="api_error_alert_content">目前雲端資料存取異常，請重新存取</string>
+    <string name="api_error_alert_content">目前雲端資料存取異常\n[確定] 立即重新存取\n[取消] 自行重啟APP</string>
+
     <string name="txt_confirm">確定</string>
+    <string name="txt_cancel">取消</string>
 </resources>

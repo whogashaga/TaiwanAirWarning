@@ -7,13 +7,14 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.RecyclerView
 import com.kerry.ubiquitiassignment.databinding.ActivityMainBinding
 import com.kerry.ubiquitiassignment.model.Record
 import com.kerry.ubiquitiassignment.ui.AboveAvgPmAdapter
 import com.kerry.ubiquitiassignment.ui.BelowAvgPmAdapter
-import com.kerry.ubiquitiassignment.utils.*
+import com.kerry.ubiquitiassignment.utils.dp
+import com.kerry.ubiquitiassignment.utils.gone
+import com.kerry.ubiquitiassignment.utils.visible
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -137,10 +138,13 @@ class MainActivity : AppCompatActivity() {
                     .setTitle(R.string.api_error_alert_title)
                     .setMessage(R.string.api_error_alert_content)
                     .setCancelable(false)
-                    .setPositiveButton(R.string.txt_confirm) { dialog, _ ->
+                    .setPositiveButton(R.string.txt_confirm) { _, _ ->
+                        binding.shimmerLoading.root.showShimmer(true)
                         viewModel.fetchRecordList()
-                        dialog.dismiss()
-                    }.show()
+                    }
+                    .setNegativeButton(R.string.txt_cancel) { _, _ -> }
+                    .show()
+                binding.shimmerLoading.root.hideShimmer()
             }
 
         }
