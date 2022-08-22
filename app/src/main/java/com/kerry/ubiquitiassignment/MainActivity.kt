@@ -130,6 +130,20 @@ class MainActivity : AppCompatActivity() {
                 binding.tvMessage.run { if (it.isEmpty()) visible() else gone() }
             }
         }
+
+        viewModel.enableErrorAlert.observe(this) {
+            if (it) {
+                AlertDialog.Builder(this)
+                    .setTitle(R.string.api_error_alert_title)
+                    .setMessage(R.string.api_error_alert_content)
+                    .setCancelable(false)
+                    .setPositiveButton(R.string.txt_confirm) { dialog, _ ->
+                        viewModel.fetchRecordList()
+                        dialog.dismiss()
+                    }.show()
+            }
+
+        }
     }
 
     private fun showPm25AlertDialog(it: Record) {
@@ -141,8 +155,7 @@ class MainActivity : AppCompatActivity() {
                     it.county.orEmpty(),
                     it.pmTwoPointFive.orEmpty()
                 )
-            )
-            .show()
+            ).show()
     }
 
 }
