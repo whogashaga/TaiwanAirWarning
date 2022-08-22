@@ -4,11 +4,9 @@ import android.content.Context
 import android.content.res.TypedArray
 import android.os.Build
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import androidx.annotation.StyleableRes
 import androidx.constraintlayout.motion.widget.MotionLayout
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.widget.addTextChangedListener
 import com.kerry.ubiquitiassignment.R
 import com.kerry.ubiquitiassignment.databinding.CustomToolbarBinding

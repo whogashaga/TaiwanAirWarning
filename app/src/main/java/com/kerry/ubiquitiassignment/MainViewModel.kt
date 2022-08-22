@@ -7,7 +7,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.debounce
-import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -28,6 +27,7 @@ class MainViewModel @Inject constructor(
 
     private var _allRecords: List<Record?> = listOf()
     private val _keyword = MutableStateFlow("")
+    val keyword: LiveData<String> get() = _keyword.asLiveData()
 
     @OptIn(FlowPreview::class)
     val searchedRecords = _keyword

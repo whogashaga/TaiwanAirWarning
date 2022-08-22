@@ -128,7 +128,17 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.searchedRecords.observe(this) {
             searchRecordsAdapter.submitList(it) {
-                binding.tvMessage.run { if (it.isEmpty()) visible() else gone() }
+                binding.tvMessage.run {
+                    if (it.isEmpty()) visible() else gone()
+                }
+            }
+        }
+
+        viewModel.keyword.observe(this) {
+            binding.tvMessage.text = if (it.isEmpty()) {
+                getString(R.string.key_in_keyword_plz)
+            } else {
+                getString(R.string.can_not_find_info, it)
             }
         }
 
