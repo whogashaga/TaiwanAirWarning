@@ -63,6 +63,7 @@ class CustomToolbar @JvmOverloads constructor(
                     R.id.toolbar_normal_mode -> {
                         binding.editKeyword.isEnabled = false
                         onBackClick.invoke()
+                        binding.editKeyword.setText("")
                     }
                     R.id.toolbar_search_mode -> {
                         binding.editKeyword.isEnabled = true
@@ -93,6 +94,14 @@ class CustomToolbar @JvmOverloads constructor(
 
     private fun View.setAttributeDrawable(ta: TypedArray, @StyleableRes attrs: Int) {
         ta.getDrawable(attrs)?.let { drawable -> this.background = drawable }
+    }
+
+    fun navigateSearchMode() {
+        this.transitionToEnd()
+    }
+
+    fun navigateNormalMode() {
+        this.transitionToStart()
     }
 
 }

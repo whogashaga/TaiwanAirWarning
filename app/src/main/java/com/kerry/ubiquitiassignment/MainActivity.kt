@@ -129,7 +129,12 @@ class MainActivity : AppCompatActivity() {
         viewModel.searchedRecords.observe(this) {
             searchRecordsAdapter.submitList(it) {
                 binding.tvMessage.run {
-                    if (it.isEmpty()) visible() else gone()
+                    if (it.isEmpty()) {
+                        visible()
+                        binding.rvSearchRecords.scrollToPosition(0)
+                    } else {
+                        gone()
+                    }
                 }
             }
         }
@@ -158,6 +163,14 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
+    }
+
+    override fun onBackPressed() {
+        if (binding.toolbar.currentState == R.id.toolbar_search_mode) {
+            binding.toolbar.navigateNormalMode()
+            return
+        }
+        super.onBackPressed()
     }
 
     private fun showPm25AlertDialog(it: Record) {
