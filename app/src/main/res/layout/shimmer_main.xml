@@ -80,6 +80,12 @@
             android:layout_marginTop="16dp"
             android:background="@drawable/bg_card_place_holder" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="84dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_card_place_holder" />
+
     </LinearLayout>
 
 </com.facebook.shimmer.ShimmerFrameLayout>

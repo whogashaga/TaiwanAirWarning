@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:motion="http://schemas.android.com/apk/res-auto">
-
     <Transition
+        android:id="@+id/transition_toolbar"
         motion:constraintSetEnd="@+id/toolbar_search_mode"
         motion:constraintSetStart="@id/toolbar_normal_mode"
         motion:duration="300">
+
     </Transition>
 
     <ConstraintSet android:id="@+id/toolbar_normal_mode">
@@ -18,10 +19,21 @@
 
         <Constraint
             android:id="@+id/editKeyword"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginStart="24dp"
-            motion:layout_constraintStart_toStartOf="parent" />
+            motion:layout_constraintStart_toStartOf="parent">
+            <PropertySet android:visibility="invisible" />
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/tvToolbarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="24dp"
+            motion:layout_constraintStart_toStartOf="parent">
+            <PropertySet android:visibility="visible" />
+        </Constraint>
 
         <Constraint
             android:id="@+id/ivSearch"
@@ -42,10 +54,21 @@
 
         <Constraint
             android:id="@+id/editKeyword"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginStart="16dp"
-            motion:layout_constraintStart_toEndOf="@+id/ivBack" />
+            motion:layout_constraintStart_toEndOf="@+id/ivBack">
+            <PropertySet android:visibility="visible" />
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/tvToolbarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="24dp"
+            motion:layout_constraintStart_toEndOf="@+id/ivBack">
+            <PropertySet android:visibility="invisible" />
+        </Constraint>
 
         <Constraint
             android:id="@+id/ivSearch"
@@ -54,6 +77,6 @@
             android:scaleX="0"
             android:scaleY="0"
             motion:layout_constraintDimensionRatio="1:1"
-            motion:layout_constraintEnd_toEndOf="parent"/>
+            motion:layout_constraintEnd_toEndOf="parent" />
     </ConstraintSet>
 </MotionScene>

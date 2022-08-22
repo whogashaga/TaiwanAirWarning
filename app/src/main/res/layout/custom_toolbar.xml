@@ -30,8 +30,17 @@
         android:textCursorDrawable="@drawable/bg_edit_cursor"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivBack" />
+
+    <TextView
+        android:id="@+id/tvToolbarTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:gravity="center_vertical"
         app:layout_constraintStart_toEndOf="@+id/ivBack"
-        tools:text="空氣污染" />
+        tools:text="空氣污染"/>
 
     <ImageView
         android:id="@+id/ivSearch"

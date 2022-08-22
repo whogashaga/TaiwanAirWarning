@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.TypedArray
 import android.os.Build
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import androidx.annotation.StyleableRes
 import androidx.constraintlayout.motion.widget.MotionLayout
@@ -14,7 +15,7 @@ import com.kerry.ubiquitiassignment.databinding.CustomToolbarBinding
 import com.kerry.ubiquitiassignment.utils.showKeyboard
 
 class CustomToolbar @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0,
 ) : MotionLayout(context, attrs, defStyleAttr) {
 
     private val binding = CustomToolbarBinding.bind(
@@ -29,14 +30,13 @@ class CustomToolbar @JvmOverloads constructor(
         val ta = context.obtainStyledAttributes(attrs, R.styleable.CustomToolbar, defStyleAttr, 0)
         binding.ivBack.setAttributeDrawable(ta, R.styleable.CustomToolbar_backIconRes)
         binding.ivSearch.setAttributeDrawable(ta, R.styleable.CustomToolbar_searchIconRes)
-//        binding.editKeyword.setAttributeDrawable(ta, R.styleable.CustomToolbar_editTextBackground)
         ta.getDrawable(R.styleable.CustomToolbar_editTextCursorBackground)?.let { drawable ->
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 binding.editKeyword.textCursorDrawable = drawable
             }
         }
         ta.getString(R.styleable.CustomToolbar_toolbarTitle)?.let { title ->
-            binding.editKeyword.setText(title)
+            binding.tvToolbarTitle.text = title
         }
         ta.recycle()
         setupClickEvent()
@@ -48,7 +48,7 @@ class CustomToolbar @JvmOverloads constructor(
             override fun onTransitionStarted(
                 motionLayout: MotionLayout?,
                 startId: Int,
-                endId: Int
+                endId: Int,
             ) {
             }
 
@@ -56,16 +56,19 @@ class CustomToolbar @JvmOverloads constructor(
                 motionLayout: MotionLayout?,
                 startId: Int,
                 endId: Int,
-                progress: Float
+                progress: Float,
             ) {
             }
 
             override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
                 when (currentId) {
                     R.id.toolbar_normal_mode -> {
+                        binding.editKeyword.isEnabled = false
                         onBackClick.invoke()
                     }
                     R.id.toolbar_search_mode -> {
+                        binding.editKeyword.isEnabled = true
+                        binding.editKeyword.showKeyboard()
                         onSearchClick.invoke()
                     }
                 }
@@ -75,7 +78,7 @@ class CustomToolbar @JvmOverloads constructor(
                 motionLayout: MotionLayout?,
                 triggerId: Int,
                 positive: Boolean,
-                progress: Float
+                progress: Float,
             ) {
             }
         })
@@ -83,13 +86,9 @@ class CustomToolbar @JvmOverloads constructor(
 
     private fun setupClickEvent() {
         binding.ivBack.setOnClickListener {
-            binding.editKeyword.isEnabled = false
-            binding.editKeyword.setText(R.string.toolbar_title)
             this.transitionToStart()
         }
         binding.ivSearch.setOnClickListener {
-            binding.editKeyword.isEnabled = true
-            binding.editKeyword.showKeyboard()
             this.transitionToEnd()
         }
     }

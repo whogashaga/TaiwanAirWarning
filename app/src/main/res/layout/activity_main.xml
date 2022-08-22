@@ -62,6 +62,8 @@
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:background="@drawable/bg_toolbar"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layoutDescription="@xml/activity_main_xml_toolbar_scene"
+        app:toolbarTitle="@string/toolbar_title" />
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

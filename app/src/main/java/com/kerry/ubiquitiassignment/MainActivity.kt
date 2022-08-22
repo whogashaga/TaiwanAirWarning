@@ -65,27 +65,6 @@ class MainActivity : AppCompatActivity() {
                 viewModel.onTextChanged(it)
             }
         }
-//        binding.ivSearch.setOnClickListener {
-//            binding.ivBack.visible()
-//            binding.editKeyword.visible()
-//            binding.editKeyword.isEnabled = true
-//            binding.editKeyword.showKeyboard()
-//            binding.tvTitle.gone()
-//            binding.ivSearch.gone()
-//            binding.root.transitionToEnd()
-//            viewModel.onTextChanged("")
-//        }
-//
-//        binding.ivBack.setOnClickListener {
-//            binding.tvTitle.visible()
-//            binding.ivSearch.visible()
-//            binding.editKeyword.setText("")
-//            binding.editKeyword.isEnabled = false
-//            binding.editKeyword.gone()
-//            binding.ivBack.gone()
-//            binding.root.transitionToStart()
-//        }
-//
     }
 
     private fun setupRecyclerView() {
