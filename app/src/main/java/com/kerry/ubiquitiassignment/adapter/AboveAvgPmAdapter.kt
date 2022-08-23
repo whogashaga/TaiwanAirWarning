@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.kerry.ubiquitiassignment.R
 import com.kerry.ubiquitiassignment.databinding.ItemAbovePm30Binding
 import com.kerry.ubiquitiassignment.model.Record
 import com.kerry.ubiquitiassignment.utils.gone
@@ -53,9 +54,11 @@ class AboveAvgPmViewHolder(
 
         if (record?.isStatusGood == true) {
             binding.ivArrow.gone()
+            binding.root.setBackgroundResource(R.drawable.bg_card_white)
             binding.root.setOnClickListener {  }
         } else {
             binding.ivArrow.visible()
+            binding.root.setBackgroundResource(R.drawable.bg_card_white_clickable)
             binding.root.setOnClickListener {
                 if (record != null) {
                     onArrowClick.invoke(record)
