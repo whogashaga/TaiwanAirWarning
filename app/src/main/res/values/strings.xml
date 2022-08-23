@@ -3,7 +3,7 @@
 
     <string name="toolbar_title">空氣污染</string>
 
-    <string name="alert_api_speed_slow">雲端資料存取中 請耐心等候…</string>
+    <string name="alert_api_speed_slow">雲端資料存取中，請耐心等候…</string>
 
     <string name="search_hint">請輸入「站名」</string>
     <string name="key_in_keyword_plz">請輸入「站名」\n查詢該地區空汙資訊</string>

@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+    private var isLeaving = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -162,7 +163,16 @@ class MainActivity : AppCompatActivity() {
             binding.toolbar.navigateNormalMode()
             return
         }
-        super.onBackPressed()
+        if (isLeaving) {
+            super.onBackPressed()
+        } else {
+            isLeaving = true
+            Toast.makeText(this, "再按一次「返回」即可關閉程式", Toast.LENGTH_SHORT).show()
+            binding.root.postDelayed({
+                isLeaving = false
+            }, 2000)
+        }
+
     }
 
     private fun showPm25AlertDialog(it: Record) {
