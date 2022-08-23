@@ -1,4 +1,4 @@
-package com.kerry.ubiquitiassignment.ui
+package com.kerry.ubiquitiassignment.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -2,6 +2,7 @@ package com.kerry.ubiquitiassignment
 
 import androidx.lifecycle.*
 import com.kerry.ubiquitiassignment.model.Record
+import com.kerry.ubiquitiassignment.network.ApiResult
 import com.kerry.ubiquitiassignment.repository.MyRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.FlowPreview

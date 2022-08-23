@@ -1,7 +1,6 @@
 package com.kerry.ubiquitiassignment
 
 import android.graphics.Color
-import android.graphics.Color.red
 import android.graphics.Rect
 import android.os.Bundle
 import android.view.View
@@ -16,8 +15,8 @@ import androidx.core.text.italic
 import androidx.recyclerview.widget.RecyclerView
 import com.kerry.ubiquitiassignment.databinding.ActivityMainBinding
 import com.kerry.ubiquitiassignment.model.Record
-import com.kerry.ubiquitiassignment.ui.AboveAvgPmAdapter
-import com.kerry.ubiquitiassignment.ui.BelowAvgPmAdapter
+import com.kerry.ubiquitiassignment.adapter.AboveAvgPmAdapter
+import com.kerry.ubiquitiassignment.adapter.BelowAvgPmAdapter
 import com.kerry.ubiquitiassignment.utils.dp
 import com.kerry.ubiquitiassignment.utils.gone
 import com.kerry.ubiquitiassignment.utils.visible

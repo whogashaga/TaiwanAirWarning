@@ -1,4 +1,4 @@
-package com.kerry.ubiquitiassignment
+package com.kerry.ubiquitiassignment.network
 
 sealed class ApiResult<out R> {
     data class Success<out T>(val data: T) : ApiResult<T>()

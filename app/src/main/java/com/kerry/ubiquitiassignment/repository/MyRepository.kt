@@ -1,7 +1,7 @@
 package com.kerry.ubiquitiassignment.repository
 
-import com.kerry.ubiquitiassignment.ApiResult
-import com.kerry.ubiquitiassignment.ApiResult.*
+import com.kerry.ubiquitiassignment.network.ApiResult
+import com.kerry.ubiquitiassignment.network.ApiResult.*
 import com.kerry.ubiquitiassignment.model.Record
 import com.kerry.ubiquitiassignment.network.ApiService
 import javax.inject.Inject
