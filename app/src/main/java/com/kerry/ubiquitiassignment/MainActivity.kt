@@ -159,18 +159,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if (binding.toolbar.currentState == R.id.toolbar_search_mode) {
-            binding.toolbar.navigateNormalMode()
-            return
-        }
-        if (isLeaving) {
-            super.onBackPressed()
-        } else {
-            isLeaving = true
-            Toast.makeText(this, "再按一次「返回」即可關閉程式", Toast.LENGTH_SHORT).show()
-            binding.root.postDelayed({
-                isLeaving = false
-            }, 2000)
+        when {
+            binding.toolbar.currentState == R.id.toolbar_search_mode -> binding.toolbar.enableNormalMode()
+            isLeaving -> super.onBackPressed()
+            else -> {
+                isLeaving = true
+                Toast.makeText(this, "再按一次「返回」即可關閉程式", Toast.LENGTH_SHORT).show()
+                binding.root.postDelayed({ isLeaving = false }, 2000)
+            }
         }
 
     }
@@ -187,7 +183,7 @@ class MainActivity : AppCompatActivity() {
                     append("\n出門前請三思或戴好口罩")
                 }
             )
-            .setPositiveButton(R.string.txt_confirm) { _, _ -> }
+            .setPositiveButton(R.string.txt_understand) { _, _ -> }
             .show()
     }
 

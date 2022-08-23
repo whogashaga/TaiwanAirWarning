@@ -96,11 +96,11 @@ class CustomToolbar @JvmOverloads constructor(
         ta.getDrawable(attrs)?.let { drawable -> this.background = drawable }
     }
 
-    fun navigateSearchMode() {
+    fun enableSearchMode() {
         this.transitionToEnd()
     }
 
-    fun navigateNormalMode() {
+    fun enableNormalMode() {
         this.transitionToStart()
     }
 
