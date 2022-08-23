@@ -27,14 +27,20 @@ class MainViewModel @Inject constructor(
 
     private var _allRecords: List<Record?> = listOf()
     private val _keyword = MutableStateFlow("")
-    val keyword: LiveData<String> get() = _keyword.asLiveData()
+
+    @OptIn(FlowPreview::class)
+    val keyword: LiveData<String> get() = _keyword.debounce(600).asLiveData()
 
     @OptIn(FlowPreview::class)
     val searchedRecords = _keyword
         .debounce(500)
         .map { keyword ->
-            _allRecords.filter { record ->
-                record?.siteName?.contains(keyword) == true || record?.county?.contains(keyword) == true
+            if (keyword.isEmpty()) {
+                listOf()
+            } else {
+                _allRecords.filter { record ->
+                    record?.siteName?.contains(keyword) == true || record?.county?.contains(keyword) == true
+                }
             }
         }
         .asLiveData()

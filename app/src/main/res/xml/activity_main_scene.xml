@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<MotionScene 
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:motion="http://schemas.android.com/apk/res-auto">
 
     <Transition
@@ -20,15 +19,15 @@
             android:id="@+id/viewDivider"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            motion:layout_constraintTop_toBottomOf="@+id/rvBelowAvgPm"
-            motion:layout_constraintBottom_toTopOf="@+id/rvAboveAvgPm" />
+            motion:layout_constraintBottom_toTopOf="@+id/rvAboveAvgPm"
+            motion:layout_constraintTop_toBottomOf="@+id/rvBelowAvgPm" />
 
         <Constraint
             android:id="@+id/rvAboveAvgPm"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            motion:layout_constraintTop_toBottomOf="@+id/viewDivider"
-            motion:layout_constraintBottom_toBottomOf="parent" />
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/viewDivider" />
 
         <Constraint
             android:id="@+id/rvSearchRecords"
@@ -40,12 +39,11 @@
             android:id="@+id/tvMessage"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            motion:layout_constraintBottom_toBottomOf="@+id/toolbar" >
+            motion:layout_constraintBottom_toBottomOf="@+id/toolbar">
             <PropertySet motion:visibilityMode="ignore" />
         </Constraint>
 
-        <Constraint
-            android:id="@+id/shimmerLoading">
+        <Constraint android:id="@+id/shimmerLoading">
             <PropertySet motion:visibilityMode="ignore" />
         </Constraint>
 
@@ -63,34 +61,33 @@
             android:id="@+id/viewDivider"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            motion:layout_constraintTop_toBottomOf="@+id/rvBelowAvgPm"
-            motion:layout_constraintBottom_toTopOf="@+id/rvAboveAvgPm" />
+            motion:layout_constraintBottom_toTopOf="@+id/rvAboveAvgPm"
+            motion:layout_constraintTop_toBottomOf="@+id/rvBelowAvgPm" />
 
         <Constraint
             android:id="@+id/rvAboveAvgPm"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            motion:layout_constraintTop_toBottomOf="@+id/viewDivider"
-            motion:layout_constraintBottom_toBottomOf="parent" />
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/viewDivider" />
 
         <Constraint
             android:id="@+id/rvSearchRecords"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            motion:layout_constraintTop_toBottomOf="@+id/toolbar"
-            motion:layout_constraintBottom_toBottomOf="parent" />
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
         <Constraint
             android:id="@+id/tvMessage"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            motion:layout_constraintTop_toBottomOf="@+id/toolbar"
-            motion:layout_constraintBottom_toBottomOf="parent" >
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/toolbar">
             <PropertySet motion:visibilityMode="ignore" />
         </Constraint>
 
-        <Constraint
-            android:id="@+id/shimmerLoading">
+        <Constraint android:id="@+id/shimmerLoading">
             <PropertySet motion:visibilityMode="ignore" />
         </Constraint>
 

@@ -131,9 +131,9 @@ class MainActivity : AppCompatActivity() {
                 binding.tvMessage.run {
                     if (it.isEmpty()) {
                         visible()
-                        binding.rvSearchRecords.scrollToPosition(0)
                     } else {
                         gone()
+                        binding.rvSearchRecords.scrollToPosition(0)
                     }
                 }
             }
@@ -182,7 +182,9 @@ class MainActivity : AppCompatActivity() {
                     it.county.orEmpty(),
                     it.pmTwoPointFive.orEmpty()
                 )
-            ).show()
+            )
+            .setPositiveButton(R.string.txt_confirm) { _, _ -> }
+            .show()
     }
 
 }
