@@ -1,5 +1,7 @@
 package com.kerry.ubiquitiassignment
 
+import android.graphics.Color
+import android.graphics.Color.red
 import android.graphics.Rect
 import android.os.Bundle
 import android.view.View
@@ -7,6 +9,10 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.text.bold
+import androidx.core.text.buildSpannedString
+import androidx.core.text.color
+import androidx.core.text.italic
 import androidx.recyclerview.widget.RecyclerView
 import com.kerry.ubiquitiassignment.databinding.ActivityMainBinding
 import com.kerry.ubiquitiassignment.model.Record
@@ -89,27 +95,14 @@ class MainActivity : AppCompatActivity() {
 
         with(binding.rvAboveAvgPm) {
             adapter = aboveAvgPmAdapter.apply {
-                onArrowClick = {
-                    AlertDialog.Builder(this@MainActivity)
-                        .setTitle(R.string.air_alert_title)
-                        .setMessage(
-                            getString(
-                                R.string.air_alert_content,
-                                it.county.orEmpty(),
-                                it.pmTwoPointFive.orEmpty()
-                            )
-                        )
-                        .show()
-                }
+                onArrowClick = { showPm25AlertDialog(it) }
             }
             addItemDecoration(verticalDecoration)
         }
 
         with(binding.rvSearchRecords) {
             adapter = searchRecordsAdapter.apply {
-                onArrowClick = {
-                    showPm25AlertDialog(it)
-                }
+                onArrowClick = { showPm25AlertDialog(it) }
             }
             addItemDecoration(verticalDecoration)
         }
@@ -177,11 +170,13 @@ class MainActivity : AppCompatActivity() {
         AlertDialog.Builder(this@MainActivity)
             .setTitle(R.string.air_alert_title)
             .setMessage(
-                getString(
-                    R.string.air_alert_content,
-                    it.county.orEmpty(),
-                    it.pmTwoPointFive.orEmpty()
-                )
+                buildSpannedString {
+                    append("目前 ")
+                    italic { bold { append(it.siteName.orEmpty()) } }
+                    append(" PM2.5 為 ")
+                    italic { bold { color(Color.RED) { append(it.pmTwoPointFive.orEmpty()) } } }
+                    append("\n出門前請三思或戴好口罩")
+                }
             )
             .setPositiveButton(R.string.txt_confirm) { _, _ -> }
             .show()
