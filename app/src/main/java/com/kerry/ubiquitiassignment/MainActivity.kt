@@ -172,8 +172,8 @@ class MainActivity : AppCompatActivity() {
             .setMessage(
                 buildSpannedString {
                     append("目前 ")
-                    italic { bold { append(it.siteName.orEmpty()) } }
-                    append(" PM2.5 為 ")
+                    bold { append(it.siteName.orEmpty()) }
+                    append(" 的 PM2.5 為 ")
                     italic { bold { color(Color.RED) { append(it.pmTwoPointFive.orEmpty()) } } }
                     append("\n出門前請三思或戴好口罩")
                 }
