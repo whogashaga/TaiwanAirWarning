@@ -12,8 +12,9 @@
         <Constraint
             android:id="@+id/swipeRefresh"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            motion:layout_constraintTop_toBottomOf="@+id/toolbar" />
+            android:layout_height="0dp"
+            motion:layout_constraintTop_toBottomOf="@+id/toolbar"
+            motion:layout_constraintBottom_toBottomOf="parent"/>
 
         <Constraint
             android:id="@+id/rvSearchRecords"
@@ -40,8 +41,9 @@
         <Constraint
             android:id="@+id/swipeRefresh"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            motion:layout_constraintTop_toBottomOf="@+id/toolbar" />
+            android:layout_height="0dp"
+            motion:layout_constraintTop_toBottomOf="@+id/toolbar"
+            motion:layout_constraintBottom_toBottomOf="parent"/>
 
         <Constraint
             android:id="@+id/rvSearchRecords"
