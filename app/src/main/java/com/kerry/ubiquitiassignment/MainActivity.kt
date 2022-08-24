@@ -52,12 +52,20 @@ class MainActivity : AppCompatActivity() {
 
         Toast.makeText(this, getString(R.string.alert_api_speed_slow), Toast.LENGTH_LONG).show()
 
-        viewModel.fetchRecordList()
-
         setupToolbar()
+        setupSwipeRefresh()
         setupRecyclerView()
         observeLiveData()
 
+    }
+
+    private fun setupSwipeRefresh() {
+        with(binding.swipeRefresh) {
+            isEnabled = false
+            setOnRefreshListener {
+                viewModel.fetchRecordList()
+            }
+        }
     }
 
     private fun setupToolbar() {
@@ -112,6 +120,8 @@ class MainActivity : AppCompatActivity() {
         viewModel.recordsBelowAvg.observe(this) {
             belowAvgPmAdapter.submitList(it) {
                 binding.shimmerLoading.root.gone()
+                binding.swipeRefresh.isRefreshing = false
+                binding.swipeRefresh.isEnabled = true
             }
         }
 

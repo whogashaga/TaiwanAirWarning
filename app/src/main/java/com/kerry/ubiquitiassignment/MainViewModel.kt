@@ -46,6 +46,10 @@ class MainViewModel @Inject constructor(
         }
         .asLiveData()
 
+    init {
+        fetchRecordList()
+    }
+
     fun fetchRecordList() = viewModelScope.launch {
         when (val result = repo.getAirDataResult(limit = 1000, apiKey = BuildConfig.API_KEY)) {
             is ApiResult.Success -> {

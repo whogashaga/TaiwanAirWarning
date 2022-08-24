@@ -10,24 +10,10 @@
 
     <ConstraintSet android:id="@+id/content_normal_mode">
         <Constraint
-            android:id="@+id/rvBelowAvgPm"
+            android:id="@+id/swipeRefresh"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             motion:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
-        <Constraint
-            android:id="@+id/viewDivider"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            motion:layout_constraintBottom_toTopOf="@+id/rvAboveAvgPm"
-            motion:layout_constraintTop_toBottomOf="@+id/rvBelowAvgPm" />
-
-        <Constraint
-            android:id="@+id/rvAboveAvgPm"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            motion:layout_constraintBottom_toBottomOf="parent"
-            motion:layout_constraintTop_toBottomOf="@+id/viewDivider" />
 
         <Constraint
             android:id="@+id/rvSearchRecords"
@@ -52,24 +38,10 @@
     <ConstraintSet android:id="@+id/content_search_mode">
 
         <Constraint
-            android:id="@+id/rvBelowAvgPm"
+            android:id="@+id/swipeRefresh"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             motion:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
-        <Constraint
-            android:id="@+id/viewDivider"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            motion:layout_constraintBottom_toTopOf="@+id/rvAboveAvgPm"
-            motion:layout_constraintTop_toBottomOf="@+id/rvBelowAvgPm" />
-
-        <Constraint
-            android:id="@+id/rvAboveAvgPm"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            motion:layout_constraintBottom_toBottomOf="parent"
-            motion:layout_constraintTop_toBottomOf="@+id/viewDivider" />
 
         <Constraint
             android:id="@+id/rvSearchRecords"
