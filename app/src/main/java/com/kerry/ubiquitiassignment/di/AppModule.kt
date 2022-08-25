@@ -17,7 +17,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-    val baseUrl = "https://data.epa.gov.tw/api/v2/"
+    private val baseUrl = "https://data.epa.gov.tw/api/v2/"
 
     @Singleton
     @Provides
